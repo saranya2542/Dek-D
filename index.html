@@ -4,10 +4,9 @@
     <title>Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript">
-        var img = ["1.jpg", "2.jpg", "3.jpg"];
+        var img = ["img1.jpg", "img2.jpg", "img3.jpg"];
         var dot = ["1", "2", "3"];
         function dotchange(noimg) {
-
             document.getElementById('img').src = "./img/" + img[noimg];
             var i = 0;
             for (i = 0; i < 4; i++) {
@@ -23,17 +22,24 @@
         function next() {
             var scrimg = document.getElementById('img').src;
             var i = 0;
+            var j = 0;
             for (i = 0; i < img.length; i++) {
                 if (scrimg.match(img[i]) != null) {
-                    if(i+1 == img.length)
-                    {
+                    if (i + 1 == img.length) {
                         document.getElementById('img').src = "./img/" + img[0];
+                        document.getElementById(dot[0]).style.backgroundColor = "#807F7C";
                     }
-                    else
-                    {
-                        document.getElementById('img').src = "./img/" + img[i+1];
+                    else {
+                        document.getElementById('img').src = "./img/" + img[i + 1];
                     }
-                   
+                    for (j = 0; j < 4; j++) {
+                        if (j == i + 1) {
+                            document.getElementById(dot[i + 1]).style.backgroundColor = "#807F7C";
+                        }
+                        else {
+                            document.getElementById(dot[i]).style.backgroundColor = "#DAD8D3";
+                        }
+                    }
                 }
             }
         }
@@ -42,17 +48,25 @@
             var i = 0;
             for (i = 0; i < img.length; i++) {
                 if (scrimg.match(img[i]) != null) {
-                    if(i == 0)
-                    {
-                        document.getElementById('img').src = "./img/" + img[img.length-1];
+                    if (i == 0) {
+                        document.getElementById('img').src = "./img/" + img[img.length - 1];
+                        document.getElementById(dot[img.length - 1]).style.backgroundColor = "#807F7C";
                     }
-                    else
-                    {
-                        document.getElementById('img').src = "./img/" + img[i-1];
+                    else {
+                        document.getElementById('img').src = "./img/" + img[i - 1];
+                    }
+                    for (j = 0; j < 4; j++) {
+                        if (j == i - 1) {
+                            document.getElementById(dot[i - 1]).style.backgroundColor = "#807F7C";
+                        }
+                        else {
+                            document.getElementById(dot[i]).style.backgroundColor = "#DAD8D3";
+                        }
                     }
                 }
             }
         }
+
     </script>
     <style>
         .dot {
@@ -78,26 +92,14 @@
             position: absolute;
             top: 50%;
             left: 7%;
-            transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            cursor: pointer;
-            border-radius: 5px;
-            text-align: center;
             width: 30px;
-            background-repeat: no-repeat;
         }
 
         .container .btnright {
             position: absolute;
             top: 50%;
-            right: 1%;
-            transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            cursor: pointer;
-            border-radius: 5px;
-            text-align: center;
+            right: 7%;
             width: 30px;
-            background-repeat: no-repeat;
         }
     </style>
 </head>
@@ -105,7 +107,7 @@
 <body>
     <div id="imgslider" class="container">
         <input type="image" src="./img/left.png" class="btnleft" onclick="prev()" />
-        <img id="img" src="./img/1.jpg">
+        <img id="img" src="./img/img1.jpg">
         <input type="image" src="./img/right.png" class="btnright" onclick="next()" />
     </div>
     <div style="margin-top: 10px; margin-left: 150; ">
