@@ -1,0 +1,118 @@
+<html>
+
+<head>
+    <title>Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        var img = ["1.jpg", "2.jpg", "3.jpg"];
+        var dot = ["1", "2", "3"];
+        function dotchange(noimg) {
+
+            document.getElementById('img').src = "./img/" + img[noimg];
+            var i = 0;
+            for (i = 0; i < 4; i++) {
+                if (i == noimg) {
+                    document.getElementById(dot[noimg]).style.backgroundColor = "#807F7C";
+                }
+                else {
+                    document.getElementById(dot[i]).style.backgroundColor = "#DAD8D3";
+                }
+            }
+
+        }
+        function next() {
+            var scrimg = document.getElementById('img').src;
+            var i = 0;
+            for (i = 0; i < img.length; i++) {
+                if (scrimg.match(img[i]) != null) {
+                    if(i+1 == img.length)
+                    {
+                        document.getElementById('img').src = "./img/" + img[0];
+                    }
+                    else
+                    {
+                        document.getElementById('img').src = "./img/" + img[i+1];
+                    }
+                   
+                }
+            }
+        }
+        function prev() {
+            var scrimg = document.getElementById('img').src;
+            var i = 0;
+            for (i = 0; i < img.length; i++) {
+                if (scrimg.match(img[i]) != null) {
+                    if(i == 0)
+                    {
+                        document.getElementById('img').src = "./img/" + img[img.length-1];
+                    }
+                    else
+                    {
+                        document.getElementById('img').src = "./img/" + img[i-1];
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .dot {
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: #DAD8D3;
+            display: inline-block;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .container img {
+            width: 100%;
+            height: 300px;
+        }
+
+        .container .btnleft {
+            position: absolute;
+            top: 50%;
+            left: 7%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            width: 30px;
+            background-repeat: no-repeat;
+        }
+
+        .container .btnright {
+            position: absolute;
+            top: 50%;
+            right: 1%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            width: 30px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="imgslider" class="container">
+        <input type="image" src="./img/left.png" class="btnleft" onclick="prev()" />
+        <img id="img" src="./img/1.jpg">
+        <input type="image" src="./img/right.png" class="btnright" onclick="next()" />
+    </div>
+    <div style="margin-top: 10px; margin-left: 150; ">
+        <span class="dot" id="1" style="background-color: #807F7C;" onclick="dotchange(0)"></span>
+        <span class="dot" id="2" onclick="dotchange(1)"></span>
+        <span class="dot" id="3" onclick="dotchange(2)"></span>
+    </div>
+</body>
+
+</html>
